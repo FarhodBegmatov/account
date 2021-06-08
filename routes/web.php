@@ -23,4 +23,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::namespace('Admin')->prefix('admin/')->name('admin.')->middleware('can:manage-users')->group(function(){
     Route::resource('users', 'UserController', ['except' => ['create', 'store', 'show']]);
+    Route::resource('finance', 'FinanceController');
+    Route::resource('categories', 'CategoryController');
+    Route::get('income', 'IncomeController@index')->name('income');
+    Route::get('consumption', 'ConsumptionController@index')->name('consumption');
+    Route::get('search', 'CategoryController@search')->name('search');
+    Route::get('searchContent', 'FinanceController@search')->name('search_content');
+    Route::get('searchUser', 'UserController@search')->name('search_user');
+    Route::get('searchIncome', 'IncomeController@search')->name('search_income');
+    Route::get('searchConsumption', 'ConsumptionController@search')->name('search_consumption');
 });
